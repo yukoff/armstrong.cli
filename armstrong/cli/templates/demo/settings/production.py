@@ -23,5 +23,5 @@ ROOT_URLCONF = 'urls.production'
 # errors complaining about them not being present.
 try:
     from settings.local_production import *
-except ImportError, e:
+except ImportError:
     pass

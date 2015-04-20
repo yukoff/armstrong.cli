@@ -71,12 +71,12 @@ def main():
             __import__(settings_module, globals(), locals())
             from django.core.management import setup_environ
             setup_environ(sys.modules[settings_module])
-        except ImportError, e:
+        except ImportError as e:
             sys.stderr.write("Unable to import %s: %s\n" %
                              (settings_module, e))
             sys.exit(1)
         from django.core.management import get_commands
-        django_commands = get_commands().keys()
+        django_commands = list(get_commands().keys())
         django_commands.sort()
         for command in django_commands:
             dj_parser = subparsers.add_parser(command, help='')
@@ -103,7 +103,7 @@ def call_django(argv=[], production=False):
     try:
         __import__(settings_module, globals(), locals())
         settings = sys.modules[settings_module]
-    except ImportError, e:
+    except ImportError as e:
         sys.stderr.write("Unable to import %s: %s\n" % (settings_module, e))
         sys.exit(1)
     # django expects unparsed options, so we reset argv with the script name

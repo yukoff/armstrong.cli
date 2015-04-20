@@ -8,5 +8,5 @@ def command():
     import armstrong.cli.templates
     p = armstrong.cli.templates.__path__[0]
     templates = [a for a in os.listdir(p) if os.path.isdir(os.path.join(p, a))]
-    print "The following templates are available:"
-    print "\n    %s" % "\n    ".join(templates)
+    print("The following templates are available:")
+    print(("\n    %s" % "\n    ".join(templates)))

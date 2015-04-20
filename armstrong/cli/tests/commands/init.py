@@ -32,7 +32,7 @@ class SecretKeyProperlySet(TestCase):
 
         with open(os.path.join(path, "settings", "defaults.py")) as f:
             contents = f.read()
-            self.assertRegexpMatches(contents, r"SECRET_KEY = '.+'",
+            self.assertRegex(contents, r"SECRET_KEY = '.+'",
                     msg="Should have found a non-empty SECRET_KEY")
         shutil.rmtree(path)
 

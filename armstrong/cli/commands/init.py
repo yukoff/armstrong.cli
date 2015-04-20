@@ -1,4 +1,4 @@
-from __future__ import with_statement
+
 import os
 import sys
 import re
@@ -119,7 +119,7 @@ class InitCommand(object):
             else:
                 shutil.copy(source, dest)
 
-        print "armstrong initialized!"
+        print("armstrong initialized!")
 
     @property
     def requires_armstrong(self):

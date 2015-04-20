@@ -24,5 +24,5 @@ ROOT_URLCONF = 'urls.development'
 # errors complaining about them not being present.
 try:
     from settings.local_development import *
-except ImportError, e:
+except ImportError:
     pass
