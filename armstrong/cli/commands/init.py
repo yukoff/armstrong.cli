@@ -14,7 +14,8 @@ CWD = os.getcwd()
 class InitCommand(object):
     """Initialize a new Armstrong project"""
 
-    def build_parser(self, parser):
+    @staticmethod
+    def build_parser(parser):
         parser.description = \
                 'Initialize a new Armstrong project from a template'
         parser.add_argument('--demo', action='store_true',

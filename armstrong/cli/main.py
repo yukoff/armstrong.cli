@@ -69,8 +69,11 @@ def main():
         try:
             settings_module = get_current_configuration()
             __import__(settings_module, globals(), locals())
-            from django.core.management import setup_environ
-            setup_environ(sys.modules[settings_module])
+            # from django.core.management import setup_environ
+            # setup_environ(sys.modules[settings_module])
+            os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings_module)
+            from django.conf import settings
+            settings.configure(sys.modules[settings_module])
         except ImportError as e:
             sys.stderr.write("Unable to import %s: %s\n" %
                              (settings_module, e))
@@ -93,7 +96,9 @@ def main():
         func(**kwargs)
 
 
-def call_django(argv=[], production=False):
+def call_django(argv=None, production=False):
+    if not argv:
+        argv = []
     if CWD not in sys.path:
         sys.path.insert(0, CWD)
     settings_module = "%s.development" % CONFIGURATION_MODULE

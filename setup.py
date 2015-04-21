@@ -30,6 +30,7 @@ def convert_to_str(d):
             d2[k] = str(v)
     return d2
 
+
 info = convert_to_str(info)
 NAMESPACE_PACKAGES = []
 
@@ -40,8 +41,9 @@ def generate_namespaces(package):
     if new_package.count(".") > 0:
         generate_namespaces(new_package)
     NAMESPACE_PACKAGES.append(new_package)
-generate_namespaces(info["name"])
 
+
+generate_namespaces(info["name"])
 
 if os.path.exists("MANIFEST"):
     os.unlink("MANIFEST")
@@ -53,6 +55,7 @@ packages, data_files = [], []
 root_dir = os.path.dirname(__file__)
 if root_dir:
     os.chdir(root_dir)
+
 
 def build_package(dirpath, dirnames, filenames):
     # Ignore dirnames that start with '.'
@@ -70,13 +73,13 @@ def build_package(dirpath, dirnames, filenames):
         # Ignore all dot files and any compiled
         if f == 'steps.py' or \
                 not (f.startswith(".") or
-                     f.endswith(".pyc") or
-                     f.endswith(".py")):
+                         f.endswith(".pyc") or
+                         f.endswith(".py")):
             data_files.append(os.path.join(prefix, f))
 
 
 [build_package(dirpath, dirnames, filenames) for dirpath, dirnames, filenames
-        in os.walk(info["name"].replace(".", "/"))]
+ in os.walk(info["name"].replace(".", "/"))]
 
 setup_kwargs = {
     "author": "Bay Citizen & Texas Tribune",
